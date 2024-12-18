@@ -1,10 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Badge from '../components/Badge.astro';
 ---
 
 <Layout title="Mi Portafolio">
   <main>
-    <h1>Portafolio</h1>
-    <p>Bienvenido a mi portafolio personal creado con Astro.</p>
+    <section class="w-full mx-auto lg:w-[740px] py-44">
+      <h1 class="text-5xl font-bold flex flex-row gap-x-4 pb-4">
+        Hey, soy Dilan Lopez <div class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge>
+        </div>
+      </h1>
+      <h2 class="text-xl">
+        +2 años de experiencia en el desarrollo web y aplicaciones. De Bogota, Colombia CO. Me especializo en crear soluciones 
+      </h2>
+    </section>
   </main>
 </Layout>
