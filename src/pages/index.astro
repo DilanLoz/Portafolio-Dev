@@ -1,18 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Badge from '../components/Badge.astro';
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import GitHubIcon from "../components/icons/GitHub.astro";
+import SocialRepo from "../components/SocialRepo.astro";
+import EmailIcon from "../components/icons/Email.astro";
+import Experience from "../components/Experience.astro";
 ---
 
-<Layout title="Mi Portafolio">
+<Layout title="Portafolio de DilanLoz - Desarrollador y Programador Web y Aplicaciones Móviles"
+description="Contactame para trabajar conmigo.">
   <main>
     <section class="w-full mx-auto lg:w-[740px] py-44">
+      <img class="rounded-full mb-5 size-16" src="fotoDilan.jpg" alt="" />
       <h1 class="text-5xl font-bold flex flex-row gap-x-4 pb-4">
-        Hey, soy Dilan Lopez <div class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge>
-        </div>
+        Hey, soy Dilan Lopez <a
+          href="https://www.linkedin.com/in/dilan-lopez/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex justify-center items-center"
+          ><Badge>Disponible para trabajar</Badge>
+        </a>
       </h1>
-      <h2 class="text-xl">
-        +2 años de experiencia en el desarrollo web y aplicaciones. De Bogota, Colombia CO. Me especializo en crear soluciones 
+      <h2 class="text-2xl py-6 pb-6">
+        <span class="opacity-80">+2 años de experiencia. </span><span
+          class="font-bold text-customAmarillo"
+          >Desarrollador web y en aplicaciones móviles.
+        </span><span class="opacity-80"
+          >De Bogota, Colombia CO. Me especializo en crear soluciones.</span
+        >
       </h2>
+      <nav class="flex gap-x-4 ">
+        <SocialRepo href="https://github.com/DilanLoz">
+          <GitHubIcon class="size-6"/>GitHub
+        </SocialRepo>
+        <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
+          <LinkedInIcon class="size-6"/>LinkedIn
+        </SocialRepo>
+        <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
+          <EmailIcon class="size-6"/>dilanloz@gmail.com
+        </SocialRepo>
+      </nav>
+    </section>
+    <section>
+      {
+        <Experience />
+      }
     </section>
   </main>
 </Layout>
+
