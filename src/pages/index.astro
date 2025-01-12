@@ -6,18 +6,20 @@ import GitHubIcon from "../components/icons/GitHub.astro";
 import SocialRepo from "../components/SocialRepo.astro";
 import EmailIcon from "../components/icons/Email.astro";
 import JobIcon from "../components/icons/Briefcase.astro";
+import CodeIcon from "../components/icons/Code.astro";
 import Experience from "../components/Experience.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <Layout
   title="Portafolio de DilanLoz - Desarrollador y Programador Web y Aplicaciones Móviles"
   description="Contactame para trabajar conmigo."
 >
-  <main>
+  <main class="px-4">
     <SectionContainer class="py-44 pb-20">
       <img class="rounded-full mb-5 size-16" src="fotoDilan.jpg" alt="" />
-      <h1 id="inicio" class="text-5xl font-bold flex flex-row gap-x-4 pb-4">
+      <h1 id="inicio" class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
         Hey, soy Dilan Lopez <a
           href="https://www.linkedin.com/in/dilan-lopez/"
           target="_blank"
@@ -26,7 +28,7 @@ import SectionContainer from "../components/SectionContainer.astro";
           ><Badge>Disponible para trabajar</Badge>
         </a>
       </h1>
-      <h2 class="text-2xl py-6 pb-6">
+      <h2 class="text-xl lg:text-2xl pb-6 text-wrap max-w-[700px">
         <span class="opacity-80">+2 años de experiencia. </span><span
           class="font-bold text-customAmarillo"
           >Desarrollador web y en aplicaciones móviles.
@@ -34,15 +36,15 @@ import SectionContainer from "../components/SectionContainer.astro";
           >De Bogota, Colombia CO. Me especializo en crear soluciones.</span
         >
       </h2>
-      <nav class="flex gap-x-4">
+      <nav class="flex gap-4 mt-8 flex-wrap">
         <SocialRepo href="https://github.com/DilanLoz">
-          <GitHubIcon class="size-6" />GitHub
+          <GitHubIcon class="size-4 md:size-6" />GitHub
         </SocialRepo>
         <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
-          <LinkedInIcon class="size-6" />LinkedIn
+          <LinkedInIcon class="size-4 md:size-6" />LinkedIn
         </SocialRepo>
-        <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
-          <EmailIcon class="size-6" />dilanloz@gmail.com
+        <SocialRepo href="mailto:dilanloz@gmail.com">
+          <EmailIcon class="size-4 md:size-6" />dilanloz@gmail.com
         </SocialRepo>
       </nav>
     </SectionContainer>
@@ -53,5 +55,13 @@ import SectionContainer from "../components/SectionContainer.astro";
       </h2>
       <Experience />
     </SectionContainer>
+    <SectionContainer id="proyectos">
+      <h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+        <CodeIcon class="size-7" />
+        Proyectos
+      </h2>
+      <Projects />
+    </SectionContainer>
   </main>
 </Layout>
+ 

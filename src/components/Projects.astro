@@ -1,0 +1,31 @@
+---
+import tailwindIntegration from "@astrojs/tailwind";
+import { toAttributeString } from "astro/runtime/server/render/util.js";
+
+const PROJECTS = [
+    {
+        tiltle: "CoctelApp",
+        description:
+            "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes. Los bares pueden subir productos, ofrecer servicios de bartenders para eventos y gestionar sus perfiles. La app lleva cócteles premium y servicios personalizados directamente a la puerta del cliente. Creado con PHP, JavaScript y Bootstrap",
+        link: "#",
+        github: "#",
+        image: "/public/Projects/repo-coctelapp.jpg",
+        tags: ["PHP", "JavaScript", "Bootstrap"],
+    },
+];
+---
+
+{
+    PROJECTS.map(({ tiltle, description, link, github, image, tags }) => (
+        <article>
+        <h3 class="text-2xl font-semibold text-customAmarillo mb-2">{tiltle}</h3>
+        <p>{description}</p>
+        <ul>
+            {tags.map((tag) => (
+            <li>{tag}</li>
+            ))}
+        </ul>
+        <img  class="rounded shadow-2xl shadow-white/30" src={image} alt={`Captura de pantalla de ${image}`} />
+        </article>
+    ))
+}
