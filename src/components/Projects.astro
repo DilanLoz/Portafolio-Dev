@@ -1,6 +1,12 @@
 ---
 import NextjsIcon from "./icons/Nextjs.astro";
 import TailwindIcon from "./icons/Tailwind.astro";
+import AstroIcon from "./icons/Astro.astro";
+import PhpIcon from "./icons/Php.astro";
+import JavaScriptIcon from "./icons/JavaScript.astro";
+import DjangoIcon from "./icons/Django.astro";
+import ReactIcon from "./icons/React.astro";
+import BootstrapIcon from "./icons/Bootstrap.astro";
 
 const TAGS = {
   NEXT: {
@@ -13,11 +19,38 @@ const TAGS = {
   class: "bg-[#103961] text-white",
   icon: TailwindIcon,
   },
+  ASTRO: {
+  name: "Astro",
+  class: "bg-[#1a1a1a] text-white",
+  icon: AstroIcon,
+  },
+  PHP: {
+  name: "PHP",
+  class: "bg-[#4F5B93] text-white",
+  icon: PhpIcon,
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-[#413356] text-white",
+    icon: BootstrapIcon,
+  },
+  JAVASCRIPT: {
+  name: "JavaScript",
+  class: "bg-[#F7DF1E] text-black",
+  icon: JavaScriptIcon,
+  },
+  DJANGO: {
+  name: "Django",
+  class: "bg-[#1a1a1a] text-white",
+  icon: DjangoIcon,
+  },
+  REACT: {
+    name: "React",  
+    class: "bg-[#fff] text-black",
+    icon: ReactIcon,
+  }
 
 }
-
-  
-
 const PROJECTS = [
   {
     tiltle: "CoctelApp",
@@ -26,11 +59,10 @@ const PROJECTS = [
     link: "#",
     github: "#",
     image: "/public/Projects/repo-coctelapp.jpg",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.ASTRO, TAGS.PHP, TAGS.JAVASCRIPT, TAGS.DJANGO, TAGS.REACT, TAGS.BOOTSTRAP],
   },
 ];
 ---
-
 {
   PROJECTS.map(({ tiltle, description, link, github, image, tags }) => (
     <article>
