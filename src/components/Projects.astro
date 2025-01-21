@@ -7,6 +7,8 @@ import JavaScriptIcon from "./icons/JavaScript.astro";
 import DjangoIcon from "./icons/Django.astro";
 import ReactIcon from "./icons/React.astro";
 import BootstrapIcon from "./icons/Bootstrap.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import EyeIcon from "./icons/Eye.astro";
 
 const TAGS = {
   NEXT: {
@@ -55,34 +57,75 @@ const PROJECTS = [
   {
     tiltle: "CoctelApp",
     description:
-      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes. Los bares pueden subir productos, ofrecer servicios de bartenders para eventos y gestionar sus perfiles. La app lleva cócteles premium y servicios personalizados directamente a la puerta del cliente. Creado con PHP, JavaScript y Bootstrap",
+      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes, llevando cócteles y servicios personalizados directamente al hogar. Los bares pueden gestionar los perfiles de sus empleados y ofrecer productos",
     link: "#",
-    github: "#",
+    github: "https://github.com/DilanLoz/CoctelApp.git",
     image: "/public/Projects/repo-coctelapp.jpg",
-    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.ASTRO, TAGS.PHP, TAGS.JAVASCRIPT, TAGS.DJANGO, TAGS.REACT, TAGS.BOOTSTRAP],
+    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP],
+  },
+  {
+    tiltle: "CoctelApp",
+    description:
+      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes, llevando cócteles y servicios personalizados directamente al hogar. Los bares pueden gestionar los perfiles de sus empleados y ofrecer productos",
+    link: "#",
+    github: "https://github.com/DilanLoz/CoctelApp.git",
+    image: "/public/Projects/repo-coctelapp.jpg",
+    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP],
   },
 ];
 ---
 {
   PROJECTS.map(({ tiltle, description, link, github, image, tags }) => (
-    <article>
-      <h3 class="text-2xl font-semibold text-customAmarillo mb-2">{tiltle}</h3>
-      <p class="text-lg mb-4 text-pretty">{description}</p>
+  <article class="flex items-center space-x-8 mb-16">
+    <!-- Contenido a la izquierda -->
+    <div class="relative w-[400px] h-[250px] overflow-hidden rounded shadow-2xl shadow-white/30">
+        <img
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-[1.35]"
+          src={image}
+          alt={`Captura de pantalla de ${tiltle}`}
+        />
+      <div class="absolute bottom-4 right-4 flex gap-x-2">
+        <a
+          href={github}
+          class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHubIcon class="w-4 h-4" /> Código
+        </a>
+        <a
+          href={link}
+          class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <EyeIcon class="w-4 h-4" /> Observar
+        </a>
+      </div>
+    </div>
+    <!-- Contenido a la derecha -->
+    <div class="flex-1">
+      <span class="block text-2xl font-semibold text-customAmarillo mb-2">
+        {tiltle}
+      </span>
+      <p class="text-lg mb-4 text-pretty">
+        <span class="text-base">{description}</span>
+      </p>
       <ul class="flex gap-x-4 flex-row mb-3">
         {tags.map((tag) => (
           <li>
-            <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
-                <tag.icon class="size-4"/>
-                {tag.name}
+            <span
+              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+            >
+              <tag.icon class="w-4 h-4" />
+              {tag.name}
             </span>
           </li>
         ))}
       </ul>
-      <img
-        class="rounded shadow-2xl shadow-white/30"
-        src={image}
-        alt={`Captura de pantalla de ${image}`}
-      />
-    </article>
-  ))
+    </div>
+  </article>
+))
 }
+
+
