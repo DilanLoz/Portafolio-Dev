@@ -18,36 +18,78 @@ import Projects from "../components/Projects.astro";
 >
   <main class="px-4">
     <SectionContainer class="py-44 pb-20">
-      <img class="rounded-full mb-5 size-16" src="fotoDilan.jpg" alt="" />
-      <h1 id="inicio" class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
-        Hey, soy Dilan Lopez <a
-          href="https://www.linkedin.com/in/dilan-lopez/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex justify-center items-center"
-          ><Badge>Disponible para trabajar</Badge>
-        </a>
-      </h1>
-      <h2 class="text-xl lg:text-2xl pb-6 text-wrap max-w-[700px">
-        <span class="opacity-80">+2 años de experiencia. </span><span
-          class="font-bold text-customAmarillo"
-          >Desarrollador web y en aplicaciones móviles.
-        </span><span class="opacity-80"
-          >De Bogota, Colombia CO. Me especializo en crear soluciones.</span
+      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10">
+        <!-- Contenedor de la imagen -->
+        <div class="flex-shrink-0 mx-auto">
+          <div class="relative group backdrop-blur-lg">
+            <!-- Contenedor blanco con tamaño fijo -->
+            <div
+              class="p-[4px] rounded-[16px] border border-white backdrop-blur-md inline-block"
+            >
+              <img
+                class="rounded-[16px] w-[100px] md:w-[150px] lg:w-[200px] h-auto select-none pointer-events-none"
+                src="fotoDilan.jpg"
+                alt="Foto de Dilan Lopez"
+                draggable="false"
+              />
+            </div>
+          </div>
+
+          <!-- Botón para móviles y tablets -->
+          <a
+            href="https://www.linkedin.com/in/dilan-lopez/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex mt-5 lg:hidden justify-center"
+          >
+            <Badge>Disponible para trabajar</Badge>
+          </a>
+        </div>
+
+        <!-- Contenido al lado derecho -->
+        <div
+          class="flex flex-col items-center lg:items-start text-center lg:text-left"
         >
-      </h2>
-      <nav class="flex gap-4 mt-8 flex-wrap">
-        <SocialRepo href="https://github.com/DilanLoz">
-          <GitHubIcon class="size-4 md:size-6" />GitHub
-        </SocialRepo>
-        <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
-          <LinkedInIcon class="size-4 md:size-6" />LinkedIn
-        </SocialRepo>
-        <SocialRepo href="mailto:dilanloz@gmail.com">
-          <EmailIcon class="size-4 md:size-6" />dilanloz@gmail.com
-        </SocialRepo>
-      </nav>
+          <h1
+            id="inicio"
+            class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+          >
+            Hey, soy Dilan Lopez
+          </h1>
+          <h2 class="text-xl lg:text-2xl pb-6 max-w-[700px] leading-relaxed">
+            <span class="opacity-80">+2 años de experiencia. </span>
+            <span class="font-bold text-customAmarillo">
+              Desarrollador web y en aplicaciones móviles.
+            </span>
+            <span class="opacity-80">
+              De Bogotá, Colombia CO. Me especializo en crear soluciones.
+            </span>
+          </h2>
+          <nav class="flex gap-4 mt-8 flex-wrap">
+            <SocialRepo href="https://github.com/DilanLoz">
+              <GitHubIcon class="size-4 md:size-6" />GitHub
+            </SocialRepo>
+            <SocialRepo href="https://www.linkedin.com/in/dilan-lopez/">
+              <LinkedInIcon class="size-4 md:size-6" />LinkedIn
+            </SocialRepo>
+            <SocialRepo href="mailto:dilanloz@gmail.com">
+              <EmailIcon class="size-4 md:size-6" />dilanloz@gmail.com
+            </SocialRepo>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Botón para escritorio -->
+      <a
+        href="https://www.linkedin.com/in/dilan-lopez/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden lg:flex my-5 ml-16"
+      >
+        <Badge>Disponible para trabajar</Badge>
+      </a>
     </SectionContainer>
+
     <SectionContainer id="experiencia">
       <h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
         <JobIcon class="size-7" />
@@ -64,4 +106,3 @@ import Projects from "../components/Projects.astro";
     </SectionContainer>
   </main>
 </Layout>
- 
