@@ -1,0 +1,199 @@
+---
+import CertificateIcon from "./icons/Certificate.astro";
+import OffCertificateIcon from "./icons/OffCertificate.astro";
+
+const certificados = [
+  {
+    id: 1,
+    titulo: "Ingeniería en Sistemas",
+    institucion: "Universidad Nacional de Colombia",
+    año: "2017 - 2022",
+    descripcion:
+      "Enfoque en desarrollo backend, seguridad y sistemas distribuidos.",
+    img: "/Certificate/example.png",
+    link: "https://certificado-universidad.com",
+  },
+  {
+    id: 2,
+    titulo: "Ciberseguridad Blue Team",
+    institucion: "Cisco Networking Academy",
+    año: "2024",
+    descripcion:
+      "Fundamentos del Blue Team: defensa, detección y respuesta ante amenazas.",
+    img: "/Certificate/example.png",
+    link: "https://www.netacad.com/",
+  },
+  {
+    id: 3,
+    titulo: "Desarrollo Web con JavaScript",
+    institucion: "Platzi",
+    año: "2023",
+    descripcion:
+      "Curso intensivo de desarrollo moderno con JavaScript, Node.js y APIs REST.",
+    img: "/Certificate/example.png",
+    link: "https://platzi.com/",
+  },
+];
+---
+
+<section id="formacion" class="text-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div
+      id="cert-grid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700"
+    >
+      {
+        certificados.map((cert) => (
+          <div
+            id={`card-${cert.id}`}
+            class="relative bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-lg shadow-lg overflow-hidden transition-all duration-700 transform hover:scale-[1.02]"
+          >
+            <h3 class="text-xl font-semibold text-white">{cert.titulo}</h3>
+            <p class="text-gray-300 mt-1">{cert.institucion}</p>
+            <p class="text-gray-400 text-sm mt-1">{cert.año}</p>
+
+            <div class="flex justify-end mt-4 gap-3">
+              <button
+                type="button"
+                class="text-amber-300 hover:text-amber-400 transition btn-view"
+                title="Ver detalles"
+                data-id={cert.id}
+              >
+                <span class="icon-cert">
+                  <CertificateIcon />
+                </span>
+                <span class="icon-off hidden">
+                  <OffCertificateIcon />
+                </span>
+              </button>
+
+              <a
+                href={cert.link}
+                target="_blank"
+                class="text-amber-300 hover:text-amber-400 transition"
+                title="Ver certificado completo"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-6.75 5.25l9-9m0 0H13.5m4.5 0v4.5"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+      
+      <!-- Contenedor expandible que OCUPA ESPACIO en el grid -->
+      <div
+        id="certificate-expanded"
+        class="hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3 id="expanded-title" class="text-2xl font-semibold text-white"></h3>
+          <button
+            id="close-expanded"
+            class="text-amber-300 hover:text-amber-400 transition text-2xl text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
+          >
+            ×
+          </button>
+        </div>
+        <div class="flex justify-center">
+          <img
+            id="expanded-image"
+            src=""
+            alt=""
+            class="rounded-lg max-w-full max-h-[70vh] object-contain border border-white/10 shadow-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".btn-view");
+    const expandedContainer = document.getElementById("certificate-expanded");
+    const expandedImage = document.getElementById("expanded-image");
+    const expandedTitle = document.getElementById("expanded-title");
+    const closeExpanded = document.getElementById("close-expanded");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+        const card = document.getElementById(`card-${id}`);
+        
+        // Obtener datos del certificado
+        const titulo = card.querySelector('h3').textContent;
+        const imgSrc = `/Certificate/example.png`; // Usar la imagen del certificado
+
+        // Configurar el contenedor expandido
+        expandedTitle.textContent = titulo;
+        expandedImage.src = imgSrc;
+        expandedImage.alt = titulo;
+
+        // Ocultar todos los cards normales
+        document.querySelectorAll("[id^='card-']").forEach((c) => {
+          c.classList.add("hidden");
+        });
+
+        // Mostrar el contenedor expandido
+        expandedContainer.classList.remove("hidden");
+        setTimeout(() => {
+          expandedContainer.classList.add("opacity-100", "scale-100");
+          expandedContainer.classList.remove("scale-95");
+        }, 50);
+
+        // Cambiar ícono del botón clickeado (aunque esté oculto)
+        const iconCert = card.querySelector(".icon-cert");
+        const iconOff = card.querySelector(".icon-off");
+        if (iconCert && iconOff) {
+          iconCert.classList.add("hidden");
+          iconOff.classList.remove("hidden");
+        }
+      });
+    });
+
+    // Cerrar contenedor expandido
+    closeExpanded.addEventListener('click', () => {
+      expandedContainer.classList.remove("opacity-100", "scale-100");
+      expandedContainer.classList.add("scale-95");
+      
+      setTimeout(() => {
+        expandedContainer.classList.add("hidden");
+        
+        // Mostrar todos los cards normales
+        document.querySelectorAll("[id^='card-']").forEach((c) => {
+          c.classList.remove("hidden");
+        });
+
+        // Restaurar todos los íconos
+        document.querySelectorAll("[id^='card-']").forEach((c) => {
+          const iconCert = c.querySelector(".icon-cert");
+          const iconOff = c.querySelector(".icon-off");
+          if (iconCert && iconOff) {
+            iconCert.classList.remove("hidden");
+            iconOff.classList.add("hidden");
+          }
+        });
+      }, 300);
+    });
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !expandedContainer.classList.contains('hidden')) {
+        closeExpanded.click();
+      }
+    });
+  });
+</script>
