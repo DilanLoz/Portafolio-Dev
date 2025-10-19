@@ -9,108 +9,92 @@ import ReactIcon from "./icons/React.astro";
 import BootstrapIcon from "./icons/Bootstrap.astro";
 import GitHubIcon from "./icons/GitHub.astro";
 import EyeIcon from "./icons/Eye.astro";
+import LockIcon from "./icons/Lock.astro";
+import MysqlIcon from "./icons/Mysql.astro";
 
 const TAGS = {
-  NEXT: {
-  name: "Next.js",
-  class: "bg-neutral-800 text-white",
-  icon: NextjsIcon,
-  },
-  TAILWIND: {
-  name: "Tailwind",
-  class: "bg-[#103961] text-white",
-  icon: TailwindIcon,
-  },
-  ASTRO: {
-  name: "Astro",
-  class: "bg-[#1a1a1a] text-white",
-  icon: AstroIcon,
-  },
-  PHP: {
-  name: "PHP",
-  class: "bg-[#4F5B93] text-white",
-  icon: PhpIcon,
-  },
-  BOOTSTRAP: {
-    name: "Bootstrap",
-    class: "bg-[#413356] text-white",
-    icon: BootstrapIcon,
-  },
-  JAVASCRIPT: {
-  name: "JavaScript",
-  class: "bg-[#F7DF1E] text-black",
-  icon: JavaScriptIcon,
-  },
-  DJANGO: {
-  name: "Django",
-  class: "bg-[#1a1a1a] text-white",
-  icon: DjangoIcon,
-  },
-  REACT: {
-    name: "React",  
-    class: "bg-[#fff] text-black",
-    icon: ReactIcon,
-  }
+  NEXT: { name: "Next.js", class: "bg-neutral-800 text-white", icon: NextjsIcon },
+  TAILWIND: { name: "Tailwind", class: "bg-[#103961] text-white", icon: TailwindIcon },
+  ASTRO: { name: "Astro", class: "bg-[#1a1a1a] text-white", icon: AstroIcon },
+  PHP: { name: "PHP", class: "bg-[#4F5B93] text-white", icon: PhpIcon },
+  BOOTSTRAP: { name: "Bootstrap", class: "bg-[#413356] text-white", icon: BootstrapIcon },
+  JAVASCRIPT: { name: "JavaScript", class: "bg-[#F7DF1E] text-black", icon: JavaScriptIcon },
+  DJANGO: { name: "Django", class: "bg-[#1a1a1a] text-white", icon: DjangoIcon },
+  REACT: { name: "React", class: "bg-[#fff] text-black", icon: ReactIcon },
+  MYSQL: { name: "MySQL", class: "bg-[#00758F] text-white", icon: MysqlIcon },
+};
 
-}
 const PROJECTS = [
-    {
+  {
     tiltle: "Best Farms",
     description:
       "Best Farms es un software de gestión agrícola que optimiza fincas con mapeo de cultivos y trazabilidad total de la producción, desde el registro detallado (boncheo/mesas) hasta el control de remisiones de despacho. Su arquitectura centraliza la operación y logística. Cuenta con un robusto sistema de seguridad que incluye autenticación de usuarios, encriptación de credenciales y gestión jerárquica de permisos.",
-    link: "#",
-    github: "https://github.com/DilanLoz/CoctelApp.git",
+    link: "",
+    github: "",
     image: "Projects/BestFarmsBG.png",
-    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP],
+    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.TAILWIND, TAGS.MYSQL],
   },
   {
     tiltle: "CoctelApp",
     description:
-      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes, llevando cócteles y servicios personalizados directamente al hogar. Los bares pueden gestionar los perfiles de sus empleados y ofrecer productos",
+      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes, llevando cócteles y servicios personalizados directamente al hogar. Los bares pueden gestionar los perfiles de sus empleados y ofrecer productos.",
     link: "#",
     github: "https://github.com/DilanLoz/CoctelApp.git",
     image: "Projects/CoctelAppBG.png",
-    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP],
+    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.MYSQL],
   },
-
 ];
 ---
+
 {
   PROJECTS.map(({ tiltle, description, link, github, image, tags }) => (
     <article class="flex flex-col lg:flex-row items-start gap-8 mb-16">
-      <!-- Imagen en la parte superior en móviles y a la izquierda en escritorio -->
+      <!-- Imagen del proyecto -->
       <div class="relative w-full lg:w-[400px] h-[250px] overflow-hidden rounded shadow-2xl shadow-white/30">
         <img
           class="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-[1.35]"
           src={image}
           alt={`Captura de pantalla de ${tiltle}`}
         />
+
+        <!-- Botones de acción -->
         <div class="absolute bottom-4 right-4 flex gap-x-2">
-          <a
-            href={github}
-            class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GitHubIcon class="w-4 h-4" /> Código
-          </a>
-          <a
-            href={link}
-            class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <EyeIcon class="w-4 h-4" /> Observar
-          </a>
+          {github ? (
+            <a
+              href={github}
+              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon class="w-4 h-4" /> Código
+            </a>
+          ) : (
+            <span
+              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/30 text-gray-300 cursor-default"
+              title="Código privado"
+            >
+              <LockIcon class="w-4 h-4" /> Código privado
+            </span>
+          )}
+
+          {link && (
+            <a
+              href={link}
+              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <EyeIcon class="w-4 h-4" /> Observar
+            </a>
+          )}
         </div>
       </div>
 
-      <!-- Contenido debajo de la imagen en móviles y a la derecha en escritorio -->
+      <!-- Texto y tags -->
       <div class="flex-1 flex flex-col items-start text-left gap-y-4">
         <span class="text-2xl font-semibold text-customAmarillo">{tiltle}</span>
         <p class="text-md text-pretty">{description}</p>
-        
-        <!-- Tags debajo del texto -->
+
         <ul class="flex gap-3 flex-wrap">
           {tags.map((tag) => (
             <li>
@@ -127,6 +111,3 @@ const PROJECTS = [
     </article>
   ))
 }
-
-
-

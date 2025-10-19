@@ -5,33 +5,27 @@ import OffCertificateIcon from "./icons/OffCertificate.astro";
 const certificados = [
   {
     id: 1,
-    titulo: "Ingeniería en Sistemas",
-    institucion: "Universidad Nacional de Colombia",
-    año: "2017 - 2022",
-    descripcion:
-      "Enfoque en desarrollo backend, seguridad y sistemas distribuidos.",
-    img: "/Certificate/example.png",
+    titulo: "Analisis y Desarrollo de Software",
+    institucion: "SENA",
+    año: "2023 - Actualmente",
+    img: "/Certificate/Certificado.png",
     link: "https://certificado-universidad.com",
+  },
+  {
+    id: 3,
+    titulo: "Inteleligencia Artificial Aplicada",
+    institucion: "MinTic",
+    año: "2025",
+    img: "/Certificate/GovTech-IA.png",
+    link: "https://platzi.com/",
   },
   {
     id: 2,
     titulo: "Ciberseguridad Blue Team",
     institucion: "Cisco Networking Academy",
     año: "2024",
-    descripcion:
-      "Fundamentos del Blue Team: defensa, detección y respuesta ante amenazas.",
-    img: "/Certificate/example.png",
+    img: "/Certificate/Certificado.png",
     link: "https://www.netacad.com/",
-  },
-  {
-    id: 3,
-    titulo: "Desarrollo Web con JavaScript",
-    institucion: "Platzi",
-    año: "2023",
-    descripcion:
-      "Curso intensivo de desarrollo moderno con JavaScript, Node.js y APIs REST.",
-    img: "/Certificate/example.png",
-    link: "https://platzi.com/",
   },
 ];
 ---
@@ -49,6 +43,7 @@ const certificados = [
             class="relative bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-lg shadow-lg overflow-hidden transition-all duration-700 transform hover:scale-[1.02]"
           >
             <h3 class="text-xl font-semibold text-white">{cert.titulo}</h3>
+            <hr class="py-1">
             <p class="text-gray-300 mt-1">{cert.institucion}</p>
             <p class="text-gray-400 text-sm mt-1">{cert.año}</p>
 
@@ -58,6 +53,7 @@ const certificados = [
                 class="text-amber-300 hover:text-amber-400 transition btn-view"
                 title="Ver detalles"
                 data-id={cert.id}
+                data-img={cert.img}
               >
                 <span class="icon-cert">
                   <CertificateIcon />
@@ -66,43 +62,22 @@ const certificados = [
                   <OffCertificateIcon />
                 </span>
               </button>
-
-              <a
-                href={cert.link}
-                target="_blank"
-                class="text-amber-300 hover:text-amber-400 transition"
-                title="Ver certificado completo"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-6.75 5.25l9-9m0 0H13.5m4.5 0v4.5"
-                  />
-                </svg>
-              </a>
             </div>
           </div>
         ))
       }
-      
+
       <!-- Contenedor expandible que OCUPA ESPACIO en el grid -->
       <div
         id="certificate-expanded"
         class="hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
       >
         <div class="flex justify-between items-center mb-6">
-          <h3 id="expanded-title" class="text-2xl font-semibold text-white"></h3>
+          <h3 id="expanded-title" class="text-2xl font-semibold text-white">
+          </h3>
           <button
             id="close-expanded"
-            class="text-amber-300 hover:text-amber-400 transition text-2xl text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
+            class="text-amber-300 hover:text-amber-400 transition text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
           >
             ×
           </button>
@@ -132,10 +107,10 @@ const certificados = [
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
         const card = document.getElementById(`card-${id}`);
-        
+
         // Obtener datos del certificado
-        const titulo = card.querySelector('h3').textContent;
-        const imgSrc = `/Certificate/example.png`; // Usar la imagen del certificado
+        const titulo = card.querySelector("h3").textContent;
+        const imgSrc = btn.dataset.img; // ✅ toma la ruta desde el botón clickeado
 
         // Configurar el contenedor expandido
         expandedTitle.textContent = titulo;
@@ -165,13 +140,13 @@ const certificados = [
     });
 
     // Cerrar contenedor expandido
-    closeExpanded.addEventListener('click', () => {
+    closeExpanded.addEventListener("click", () => {
       expandedContainer.classList.remove("opacity-100", "scale-100");
       expandedContainer.classList.add("scale-95");
-      
+
       setTimeout(() => {
         expandedContainer.classList.add("hidden");
-        
+
         // Mostrar todos los cards normales
         document.querySelectorAll("[id^='card-']").forEach((c) => {
           c.classList.remove("hidden");
@@ -190,8 +165,11 @@ const certificados = [
     });
 
     // Cerrar con ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !expandedContainer.classList.contains('hidden')) {
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        !expandedContainer.classList.contains("hidden")
+      ) {
         closeExpanded.click();
       }
     });
