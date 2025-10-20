@@ -13,10 +13,11 @@ import SectionContainer from "../components/SectionContainer.astro";
 import Projects from "../components/Projects.astro";
 import Learning from "../components/Learning.astro";
 import LanguageIcon from "../components/icons/Language.astro";
+import LearningIcon from "../components/icons/Certificate.astro";
 ---
 
 <Layout
-  title="Portafolio de DilanLoz - Desarrollador y Programador Web y Aplicaciones Móviles"
+  title="Dilan Lopez - Desarrollador Fullstack"
   description="Contactame para trabajar conmigo."
 >
   <main class="px-4">
@@ -62,10 +63,12 @@ import LanguageIcon from "../components/icons/Language.astro";
           <h2 class="text-xl lg:text-1xl pb-6 max-w-[700px] leading-relaxed">
             <span class="opacity-80">+1 año de experiencia. </span>
             <span class="font-bold text-customAmarillo">
-              Soy un desarrollador apasionado por crear software moderno, optimizado y escalable.
+              Soy un desarrollador apasionado por crear software moderno,
+              optimizado y escalable.
             </span>
             <span class="opacity-80">
-              Me enfoco en el backend con Laravel, PHP y Node.js, y también disfruto el desarrollo frontend con React, Tailwind y TypeScript.
+              Me enfoco en el backend con Laravel, PHP y Node.js, y también
+              disfruto el desarrollo frontend con React, Tailwind y TypeScript.
             </span>
           </h2>
           <nav class="flex gap-4 mt-8 flex-wrap">
@@ -115,10 +118,35 @@ import LanguageIcon from "../components/icons/Language.astro";
     </SectionContainer>
     <SectionContainer id="aprendizaje">
       <h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
-        <CodeIcon class="size-7" />
+        <LearningIcon class="size-7" />
         Formación y Certificaciones
       </h2>
       <Learning />
     </SectionContainer>
+    <button
+      id="btn-scroll-top"
+      class="fixed bottom-10 right-40 z-50 bg-amber-400 text-black font-semibold p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-amber-500 hover:scale-110 hidden text-2xl"
+      title="Volver arriba"
+    >
+      ↑
+    </button>
   </main>
+  <script is:inline>
+    const scrollBtn = document.getElementById("btn-scroll-top");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.remove("hidden");
+      } else {
+        scrollBtn.classList.add("hidden");
+      }
+    });
+
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  </script>
 </Layout>
