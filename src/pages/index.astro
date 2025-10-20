@@ -25,20 +25,40 @@ import LearningIcon from "../components/icons/Certificate.astro";
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10">
         <!-- Contenedor de la imagen -->
         <div class="flex-shrink-0 mx-auto">
-          <div class="relative group backdrop-blur-lg">
-            <!-- Contenedor blanco con tamaño fijo -->
-            <div
-              class="p-[4px] rounded-[16px] border border-white backdrop-blur-md inline-block"
-            >
-              <img
-                class="rounded-[16px] w-[100px] md:w-[150px] lg:w-[290px] h-auto select-none pointer-events-none"
-                src="FotPerfil.png"
-                alt="Foto de Dilan Lopez"
-                draggable="false"
-              />
-            </div>
-          </div>
-        </div>
+  <div class="relative group backdrop-blur-lg">
+    <div
+      class="p-[4px] rounded-[16px] border border-white backdrop-blur-md inline-block"
+    >
+      <img
+        class="rounded-[16px] w-[100px] md:w-[150px] lg:w-[200px] h-auto select-none pointer-events-none"
+        src="FotPerfil.png"
+        alt="Foto de Dilan Lopez"
+        draggable="false"
+      />
+    </div>
+  </div>
+
+  <!-- Botón de descarga de CV -->
+  <div class="text-center mt-6">
+    <a
+      href="/CV-DilanLopez.pdf"
+      download
+      class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md text-white font-semibold rounded-full border border-white/30 shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-3-3m3 3l3-3M4 20h16" />
+      </svg>
+      Descargar CV
+    </a>
+  </div>
+</div>
+
 
         <!-- Contenido al lado derecho -->
         <div
