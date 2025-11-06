@@ -6,20 +6,20 @@
     <!-- Navegación -->
     <nav class="flex flex-row justify-between gap-x-2 md:gap-x-4">
       <a
-        id="tecnologias-link"
-        href="#tecnologias"
+        id="proyectos-link"
+        href="#proyectos"
         class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Tecnologías</a>
+      >Proyectos</a>
       <a
         id="experiencia-link"
         href="#experiencia"
         class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
       >Experiencia</a>
       <a
-        id="proyectos-link"
-        href="#proyectos"
+        id="tecnologias-link"
+        href="#tecnologias"
         class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Proyectos</a>
+      >Tecnologías</a>
       <a
         id="aprendizaje-link"
         href="#aprendizaje"
@@ -38,14 +38,14 @@
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
         // Al bajar: fondo blanco con blur y texto negro
-        header.classList.add("backdrop-blur-lg", "bg-white/30", "rounded-md", "shadow-lg");
+        header.classList.add("backdrop-blur-lg", "bg-black/30", "rounded-md", "shadow-lg");
         navLinks.forEach((link) => {
           link.classList.add("text-white");
           link.classList.remove("text-white");
         });
       } else {
         // Arriba del todo: fondo transparente y texto blanco
-        header.classList.remove("backdrop-blur-lg", "bg-white/30", "rounded-md", "shadow-lg");
+        header.classList.remove("backdrop-blur-lg", "bg-black/30", "rounded-md", "shadow-lg");
         navLinks.forEach((link) => {
           link.classList.remove("text-white");
           link.classList.add("text-white");
