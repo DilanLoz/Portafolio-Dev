@@ -1,11 +1,12 @@
 ---
 export interface Props {
   title: string;
+  empresa: string;
   description: string;
   date: string;
   link?: string;
 }
-const { title, description, date, link } = Astro.props;
+const { title, empresa, description, date, link } = Astro.props;
 ---
 
 <div
@@ -13,6 +14,7 @@ const { title, description, date, link } = Astro.props;
 >
 </div>
 <time class="mb-1 text-sm font-normal leading-none text-blue-300">{date}</time>
+<h2 class="mb-2 text-2xl font-semibold tracking-tight text-white"> {empresa}</h2>
 <h3 class="text-lg font-semibold text-customAmarillo">{title}</h3>
 <p class="mb-4 text-base font-normal text-gray-200 text-balance">
   {description}
