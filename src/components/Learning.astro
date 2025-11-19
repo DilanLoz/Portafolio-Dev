@@ -37,7 +37,26 @@ const certificados = [
 ];
 ---
 
-<section id="formacion" class="text-white">
+<section id="formacion" class="relative text-white">
+  <div
+    id="loading-spinner"
+    class="absolute inset-0 flex flex-col items-center justify-center
+           text-white text-lg font-medium gap-3
+           bg-black/40 backdrop-blur-sm rounded-xl
+           opacity-0 pointer-events-none transition-opacity duration-300 z-20"
+  >
+    <svg
+      class="animate-spin h-10 w-10 text-green-400"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+    </svg>
+
+    <p class="text-green-300">Cargando certificado...</p>
+  </div>
   <div class="max-w-6xl mx-auto px-6">
     <div
       id="cert-grid"
@@ -91,28 +110,6 @@ const certificados = [
       ×
     </button>
   </div>
-
-  <!-- SPINNER AQUÍ (directo en el relative) -->
-  <div
-    id="loading-spinner"
-    class="absolute inset-0 flex flex-col items-center justify-center
-           text-white text-lg font-medium gap-3
-           bg-black/40 backdrop-blur-sm rounded-xl
-           opacity-0 pointer-events-none transition-opacity duration-300 z-20"
-  >
-    <svg
-      class="animate-spin h-10 w-10 text-green-400"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-    </svg>
-
-    <p class="text-green-300">Cargando certificado...</p>
-  </div>
-
   <div class="flex justify-center">
     <img
       id="expanded-image"
