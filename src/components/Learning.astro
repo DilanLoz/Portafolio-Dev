@@ -8,21 +8,21 @@ const certificados = [
     titulo: "Analisis y Desarrollo de Software",
     institucion: "SENA",
     año: "2023 - 2025",
-    img: "/Certificate/ADSO.png",
+    img: "/public/Certificate/ADSO.png",
   },
   {
     id: 2,
     titulo: "Inteleligencia Artificial Aplicada",
     institucion: "MinTic",
     año: "2025",
-    img: "/Certificate/GovTech-IA.png",
+    img: "/public/Certificate/GovTech-IA.png",
   },
   {
     id: 3,
     titulo: "Procesamiento de Información de Mercados",
     institucion: "SENA",
     año: "2021 - 2022",
-    img: "/Certificate/TecnicoSENA.png",
+    img: "/public/Certificate/TecnicoSENA.png",
   },
   /*
   {
@@ -50,24 +50,27 @@ const certificados = [
             class="relative bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-lg shadow-lg overflow-hidden transition-all duration-700 transform hover:scale-[1.02]"
           >
             <h3 class="text-xl font-semibold text-white">{cert.titulo}</h3>
-            <hr class="py-1">
+            <hr class="py-1" />
             <p class="text-gray-300 mt-1">{cert.institucion}</p>
             <p class="text-gray-400 text-sm mt-1">{cert.año}</p>
 
-            <div class="flex justify-end mt-4 gap-3">
+            <div class="flex justify-start mt-4 gap-3">
               <button
                 type="button"
-                class="text-amber-300 hover:text-amber-400 transition btn-view"
-                title="Ver detalles"
+                class="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500 bg-green-500/10 text-green-600 hover:bg-green-500/20 hover:border-green-600 transition btn-view"
+                title="Ver certificado"
                 data-id={cert.id}
                 data-img={cert.img}
               >
                 <span class="icon-cert">
                   <CertificateIcon />
                 </span>
+
                 <span class="icon-off hidden">
                   <OffCertificateIcon />
                 </span>
+
+                <span class="label font-medium text-sm">Ver Certificado</span>
               </button>
             </div>
           </div>
@@ -76,28 +79,50 @@ const certificados = [
 
       <!-- Contenedor expandible que OCUPA ESPACIO en el grid -->
       <div
-        id="certificate-expanded"
-        class="hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
-      >
-        <div class="flex justify-between items-center mb-6">
-          <h3 id="expanded-title" class="text-2xl font-semibold text-white">
-          </h3>
-          <button
-            id="close-expanded"
-            class="text-amber-300 hover:text-amber-400 transition text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
-          >
-            ×
-          </button>
-        </div>
-        <div class="flex justify-center">
-          <img
-            id="expanded-image"
-            src=""
-            alt=""
-            class="rounded-lg max-w-full max-h-[70vh] object-contain border border-white/10 shadow-lg"
-          />
-        </div>
-      </div>
+  id="certificate-expanded"
+  class="relative hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
+>
+  <div class="flex justify-between items-center mb-6">
+    <h3 id="expanded-title" class="text-2xl font-semibold text-white"></h3>
+    <button
+      id="close-expanded"
+      class="text-green-500 hover:text-green-400 transition text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
+    >
+      ×
+    </button>
+  </div>
+
+  <!-- SPINNER AQUÍ (directo en el relative) -->
+  <div
+    id="loading-spinner"
+    class="absolute inset-0 flex flex-col items-center justify-center
+           text-white text-lg font-medium gap-3
+           bg-black/40 backdrop-blur-sm rounded-xl
+           opacity-0 pointer-events-none transition-opacity duration-300 z-20"
+  >
+    <svg
+      class="animate-spin h-10 w-10 text-green-400"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+    </svg>
+
+    <p class="text-green-300">Cargando certificado...</p>
+  </div>
+
+  <div class="flex justify-center">
+    <img
+      id="expanded-image"
+      src=""
+      alt=""
+      class="rounded-lg max-w-full max-h-[70vh] object-contain border border-white/10 shadow-lg z-10"
+    />
+  </div>
+</div>
+
     </div>
   </div>
 </section>
@@ -143,6 +168,22 @@ const certificados = [
           iconCert.classList.add("hidden");
           iconOff.classList.remove("hidden");
         }
+      });
+    });
+    const spinner = document.getElementById("loading-spinner");
+
+    // Cuando se abre un certificado
+    expandedImage.onload = () => {
+      spinner.classList.remove("opacity-100");
+      spinner.classList.add("opacity-0", "pointer-events-none");
+    };
+
+    // Mostrar spinner mientras cambia la imagen
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Mostrar spinner
+        spinner.classList.remove("pointer-events-none", "opacity-0");
+        spinner.classList.add("opacity-100");
       });
     });
 

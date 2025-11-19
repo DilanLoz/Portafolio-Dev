@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				customAmarillo: '#F4E501',
+				customVerde: '#80ff00',
 			},
 		},
 	},

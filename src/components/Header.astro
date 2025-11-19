@@ -1,33 +1,39 @@
 <header
   id="main-header"
-  class="fixed top-0 left-1/2 transform -translate-x-1/2 w-full py-3 px-4 my-4 bg-transparent z-50 transition-all duration-300 xl:w-[600px] md:w-[700px] sm:w-[300px]"
+  class="fixed top-0 left-1/2 transform -translate-x-1/2 w-full py-3 px-4 my-4 bg-transparent z-50 transition-all duration-500 xl:w-[600px] md:w-[700px] sm:w-[500px]"
 >
-  <div class="flex justify-center items-center w-full max-w-[100%] xl:w-[600px] mx-auto">
+  <div
+    class="flex justify-center items-center w-full max-w-[100%] xl:w-[700px] mx-auto"
+  >
     <!-- Navegación -->
     <nav class="flex flex-row justify-between gap-x-2 md:gap-x-4">
       <a
         id="proyectos-link"
         href="#proyectos"
-        class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Proyectos</a>
-      -
+        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        >Proyectos</a
+      >
+      <span class="py-1">-</span>
       <a
         id="experiencia-link"
         href="#experiencia"
-        class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Experiencia</a>
-      -
+        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 rounded-full hover:rounded-full px-2 py-1"
+        >Experiencia</a
+      >
+      <span class="py-1">-</span>
       <a
         id="tecnologias-link"
         href="#tecnologias"
-        class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Tecnologías</a>
-      -
+        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        >Tecnologías</a
+      >
+      <span class="py-1">-</span>
       <a
         id="aprendizaje-link"
         href="#aprendizaje"
-        class="font-bold text-sm sm:text-base md:text-lg text-white hover:text-yellow-300 transition-colors duration-300"
-      >Aprendizaje</a>
+        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        >Aprendizaje</a
+      >
     </nav>
   </div>
 </header>
@@ -41,14 +47,26 @@
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
         // Al bajar: fondo blanco con blur y texto negro
-        header.classList.add("backdrop-blur-lg", "bg-black/30", "rounded-md", "shadow-lg");
+        header.classList.add(
+          "backdrop-blur-lg",
+          "bg-black/30",
+          "rounded-md",
+          "shadow-lg",
+          "border-green-500"
+        );
         navLinks.forEach((link) => {
           link.classList.add("text-white");
           link.classList.remove("text-white");
         });
       } else {
         // Arriba del todo: fondo transparente y texto blanco
-        header.classList.remove("backdrop-blur-lg", "bg-black/30", "rounded-md", "shadow-lg");
+        header.classList.remove(
+          "backdrop-blur-lg",
+          "bg-black/30",
+          "rounded-md",
+          "shadow-lg",
+          "border-green-500"
+        );
         navLinks.forEach((link) => {
           link.classList.remove("text-white");
           link.classList.add("text-white");
@@ -68,9 +86,9 @@
         const link = document.querySelector(`[href="#${entry.target.id}"]`);
         if (link) {
           if (entry.isIntersecting) {
-            link.classList.add("text-yellow-300", "font-bold");
+            link.classList.add("text-green-500", "font-extrabold", "bg-green-500/20", "shadow-green-500", "backdrop-blur-md", "transition-colors", "duration-500", "rounded-full");
           } else {
-            link.classList.remove("text-yellow-300", "font-bold");
+            link.classList.remove("text-green-500", "font-extrabold", "bg-green-500/20", "shadow-green-500", "backdrop-blur-md", "transition-colors", "duration-500", "rounded-full");
           }
         }
       });

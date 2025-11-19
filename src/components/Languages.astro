@@ -69,82 +69,48 @@ const languages = [
 ];
 ---
 
-<div class="languages">
+<div
+  class="
+    grid 
+    grid-cols-6 
+    md:grid-cols-6
+    sm:grid-cols-3
+    gap-5 
+    w-full 
+    py-4
+  "
+>
   {
     languages.map((lang) => (
-      <div class="card" title={lang.name}>
-        <img src={lang.icon} alt={lang.name} class="icon" />
-        <span class="title">{lang.name}</span>
+      <div
+        title={lang.name}
+        class="
+          flex flex-col items-center justify-center
+          w-full
+          p-4
+          rounded-xl
+          aspect-square
+          bg-white/5
+          backdrop-blur-lg
+          border border-black/20
+          transition duration-200
+          hover:scale-110
+        "
+      >
+        <img src={lang.icon} alt={lang.name} class="w-12 h-12 object-contain" />
+        <span
+          class="
+            mt-1 
+            text-sm 
+            font-medium 
+            text-white 
+            dark:text-white 
+            text-center
+          "
+        >
+          {lang.name}
+        </span>
       </div>
     ))
   }
 </div>
-
-<style>
-  .languages {
-    display: grid;
-    grid-template-columns: repeat(7, 90px); /* 5 columnas de ancho fijo */
-    gap: 0.8rem; /* menos espacio entre ellas */
-
-    padding: 1rem;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    padding: 0.8rem;
-    width: 80px;
-    height: 80px;
-    transition:
-      transform 0.2s ease,
-      border-color 0.2s ease;
-  }
-
-  .card:hover {
-    transform: scale(1.08);
-    border-color: #facc15; /* color warning */
-  }
-
-  .icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-  }
-
-  .title {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: #fff;
-    text-align: center;
-  }
-
-  @media (max-width: 768px) {
-    .languages {
-      grid-template-columns: repeat(
-        6,
-        90px
-      ); /* 3 por fila en pantallas medianas */
-    }
-  }
-
-  @media (max-width: 480px) {
-    .languages {
-      grid-template-columns: repeat(3, 90px); /* 2 por fila en móviles */
-      justify-content: center; /* centradas horizontalmente */
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    .title {
-      color: #111;
-    }
-    .card {
-      border-color: rgba(0, 0, 0, 0.3);
-    }
-  }
-</style>
