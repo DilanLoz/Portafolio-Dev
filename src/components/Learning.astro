@@ -140,34 +140,52 @@ const certificados = [
     const expandedImage = document.getElementById("expanded-image");
     const expandedTitle = document.getElementById("expanded-title");
     const closeExpanded = document.getElementById("close-expanded");
+    const spinner = document.getElementById("loading-spinner");
 
+    // Spinner siempre se oculta cuando la imagen carga
+    expandedImage.onload = () => {
+      spinner.classList.remove("opacity-100");
+      spinner.classList.add("opacity-0", "pointer-events-none");
+    };
+
+    // Click en botones
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
         const card = document.getElementById(`card-${id}`);
 
-        // Obtener datos del certificado
         const titulo = card.querySelector("h3").textContent;
-        const imgSrc = btn.dataset.img; // ✅ toma la ruta desde el botón clickeado
+        const imgSrc = btn.dataset.img;
 
-        // Configurar el contenedor expandido
+        // Mostrar spinner
+        spinner.classList.remove("pointer-events-none", "opacity-0");
+        spinner.classList.add("opacity-100");
+
+        // Título
         expandedTitle.textContent = titulo;
-        expandedImage.src = imgSrc;
+
+        // Reiniciar imagen para asegurar evento onload
+        expandedImage.src = "";
+        setTimeout(() => {
+          // Evita caché → Fix Vercel
+          expandedImage.src = imgSrc + "?v=" + Date.now();
+        }, 10);
+
         expandedImage.alt = titulo;
 
-        // Ocultar todos los cards normales
+        // Ocultar cards
         document.querySelectorAll("[id^='card-']").forEach((c) => {
           c.classList.add("hidden");
         });
 
-        // Mostrar el contenedor expandido
+        // Mostrar contenedor expandido
         expandedContainer.classList.remove("hidden");
         setTimeout(() => {
           expandedContainer.classList.add("opacity-100", "scale-100");
           expandedContainer.classList.remove("scale-95");
         }, 50);
 
-        // Cambiar ícono del botón clickeado (aunque esté oculto)
+        // Cambia iconos
         const iconCert = card.querySelector(".icon-cert");
         const iconOff = card.querySelector(".icon-off");
         if (iconCert && iconOff) {
@@ -176,24 +194,8 @@ const certificados = [
         }
       });
     });
-    const spinner = document.getElementById("loading-spinner");
 
-    // Cuando se abre un certificado
-    expandedImage.onload = () => {
-      spinner.classList.remove("opacity-100");
-      spinner.classList.add("opacity-0", "pointer-events-none");
-    };
-
-    // Mostrar spinner mientras cambia la imagen
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        // Mostrar spinner
-        spinner.classList.remove("pointer-events-none", "opacity-0");
-        spinner.classList.add("opacity-100");
-      });
-    });
-
-    // Cerrar contenedor expandido
+    // Cerrar contenedor
     closeExpanded.addEventListener("click", () => {
       expandedContainer.classList.remove("opacity-100", "scale-100");
       expandedContainer.classList.add("scale-95");
@@ -201,13 +203,10 @@ const certificados = [
       setTimeout(() => {
         expandedContainer.classList.add("hidden");
 
-        // Mostrar todos los cards normales
         document.querySelectorAll("[id^='card-']").forEach((c) => {
           c.classList.remove("hidden");
-        });
 
-        // Restaurar todos los íconos
-        document.querySelectorAll("[id^='card-']").forEach((c) => {
+          // Restaurar íconos
           const iconCert = c.querySelector(".icon-cert");
           const iconOff = c.querySelector(".icon-off");
           if (iconCert && iconOff) {
@@ -220,10 +219,7 @@ const certificados = [
 
     // Cerrar con ESC
     document.addEventListener("keydown", (e) => {
-      if (
-        e.key === "Escape" &&
-        !expandedContainer.classList.contains("hidden")
-      ) {
+      if (e.key === "Escape" && !expandedContainer.classList.contains("hidden")) {
         closeExpanded.click();
       }
     });
