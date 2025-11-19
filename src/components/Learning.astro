@@ -8,21 +8,21 @@ const certificados = [
     titulo: "Analisis y Desarrollo de Software",
     institucion: "SENA",
     año: "2023 - 2025",
-    img: "/public/Certificate/ADSO.png",
+    img: "/Certificate/ADSO.png",
   },
   {
     id: 2,
     titulo: "Inteleligencia Artificial Aplicada",
     institucion: "MinTic",
     año: "2025",
-    img: "/public/Certificate/GovTech-IA.png",
+    img: "/Certificate/GovTech-IA.png",
   },
   {
     id: 3,
     titulo: "Procesamiento de Información de Mercados",
     institucion: "SENA",
     año: "2021 - 2022",
-    img: "/public/Certificate/TecnicoSENA.png",
+    img: "/Certificate/TecnicoSENA.png",
   },
   /*
   {
@@ -38,26 +38,35 @@ const certificados = [
 ---
 
 <section id="formacion" class="relative text-white">
-  <div
-    id="loading-spinner"
-    class="absolute inset-0 flex flex-col items-center justify-center
+  <div class="max-w-6xl mx-auto px-6">
+    <div
+      id="loading-spinner"
+      class="absolute inset-0 flex flex-col items-center justify-center
            text-white text-lg font-medium gap-3
            bg-black/40 backdrop-blur-sm rounded-xl
            opacity-0 pointer-events-none transition-opacity duration-300 z-20"
-  >
-    <svg
-      class="animate-spin h-10 w-10 text-green-400"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
     >
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-    </svg>
+      <svg
+        class="animate-spin h-10 w-10 text-green-400"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
 
-    <p class="text-green-300">Cargando certificado...</p>
-  </div>
-  <div class="max-w-6xl mx-auto px-6">
+      <p class="text-green-300">Cargando certificado...</p>
+    </div>
     <div
       id="cert-grid"
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700"
@@ -98,28 +107,28 @@ const certificados = [
 
       <!-- Contenedor expandible que OCUPA ESPACIO en el grid -->
       <div
-  id="certificate-expanded"
-  class="relative hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
->
-  <div class="flex justify-between items-center mb-6">
-    <h3 id="expanded-title" class="text-2xl font-semibold text-white"></h3>
-    <button
-      id="close-expanded"
-      class="text-green-500 hover:text-green-400 transition text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
-    >
-      ×
-    </button>
-  </div>
-  <div class="flex justify-center">
-    <img
-      id="expanded-image"
-      src=""
-      alt=""
-      class="rounded-lg max-w-full max-h-[70vh] object-contain border border-white/10 shadow-lg z-10"
-    />
-  </div>
-</div>
-
+        id="certificate-expanded"
+        class="relative hidden col-span-1 sm:col-span-2 lg:col-span-3 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-lg transition-all duration-700 opacity-0 transform scale-95"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3 id="expanded-title" class="text-2xl font-semibold text-white">
+          </h3>
+          <button
+            id="close-expanded"
+            class="text-green-500 hover:text-green-400 transition text-3xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10"
+          >
+            ×
+          </button>
+        </div>
+        <div class="flex justify-center">
+          <img
+            id="expanded-image"
+            src=""
+            alt=""
+            class="rounded-lg max-w-full max-h-[70vh] object-contain border border-white/10 shadow-lg z-10"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>
