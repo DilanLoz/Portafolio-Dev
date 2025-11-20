@@ -53,9 +53,11 @@ const { title, description } = Astro.props;
     </div>
 
     <div
-      class="fixed inset-0 w-full h-full items-center top-0 z-[-2] bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"
+      class="fixed inset-0 -z-10 w-full h-full
+  [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#166534_100%)]"
     >
     </div>
+
     <Header />
     <slot />
     <Footer />
@@ -95,7 +97,6 @@ const { title, description } = Astro.props;
       setTimeout(() => {
         loader.style.display = "none";
       }, 500);
-      
     }, 400); // <- aquí decides qué tan suave se siente (400–800ms recomendado)
   });
 </script>
