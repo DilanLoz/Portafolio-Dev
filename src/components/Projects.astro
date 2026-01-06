@@ -13,6 +13,12 @@ import LockIcon from "./icons/Lock.astro";
 import MysqlIcon from "./icons/Mysql.astro";
 import TypeScriptIcon from "./icons/TypeScript.astro";
 
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
 const TAGS = {
   NEXT: { name: "Next.js", class: "bg-neutral-800 text-white", icon: NextjsIcon },
   TAILWIND: { name: "Tailwind", class: "bg-[#103961] text-white", icon: TailwindIcon },
@@ -28,71 +34,70 @@ const TAGS = {
 
 const PROJECTS = [
   {
-    tiltle: "Best Farms",
+    title: "NeoAxis Technologies",
     description:
-      "Best Farms es un software de gestión agrícola que optimiza fincas con mapeo de cultivos y trazabilidad total de la producción, desde el registro detallado (boncheo/mesas) hasta el control de remisiones de despacho. Su arquitectura centraliza la operación y logística. Cuenta con un robusto sistema de seguridad que incluye autenticación de usuarios, encriptación de credenciales y gestión jerárquica de permisos.",
+      "Empresa de desarrollo de software a medida, servidores administrados y consultoria enfocada en la transformación digital.",
+    link: "https://www.neoaxistech.com/",
+    github: "",
+    image: "Projects/NeoAxis.png",
+    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT],
+  },
+  {
+    title: "CoctelApp",
+    description:
+      "Plataforma de coctelería a domicilio que conecta bares y clientes.",
+    link: "",
+    github: "",
+    image: "Projects/CoctelAppBG.png",
+    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.MYSQL],
+  },
+    {
+    title: "Best Farms",
+    description:
+      "Best Farms es un software de gestión agrícola que optimiza fincas con mapeo de cultivos y trazabilidad total de la producción.",
     link: "",
     github: "",
     image: "Projects/BestFarmsBG.png",
     tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.TAILWIND, TAGS.MYSQL],
   },
   {
-    tiltle: "CoctelApp",
+    title: "RocketFlow",
     description:
-      "CoctelApp es una plataforma de coctelería a domicilio que conecta a bares y clientes, llevando cócteles y servicios personalizados directamente al hogar. Los bares pueden gestionar los perfiles de sus empleados y ofrecer productos.",
-    link: "",
-    github: "",
-    image: "Projects/CoctelAppBG.png",
-    tags: [TAGS.PHP, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.MYSQL],
-  },
-   {
-    tiltle: "NeoAxis Technologies",
-    description:
-      "NeoAxis Technologies es una empresa de desarrollo de software a medida que impulsa la transformación digital de negocios. Se especializa en soluciones innovadoras centradas en la calidad y la eficiencia Ofrece una amplia gama de servicios incluyendo desarrollo web y movil, administración de servicios cloud, consultoría tecnológica que proporcionan soluciones personalizadas que optimizan procesos mejoran la experiencia del usuario y fomentan el crecimiento sostenible.",
-    link: "https://www.neoaxistech.com/",
-    github: "",
-    image: "Projects/NeoAxis.png",
-    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT],
-  },
-    {
-    tiltle: "RocketFlow",
-    description:
-      "RocketFlow es una aplicación moderna de gestión de tareas y notas, diseñada para ofrecer una experiencia fluida, visual y eficiente. Inspirada en la idea de que cada tarea impulsa tus metas hacia el despegue, RocketFlow combina diseño minimalista con herramientas potentes de organización personal y profesional.",
+      "App moderna de gestión de tareas y notas con diseño minimalista.",
     link: "https://task-flow-eta-six.vercel.app/",
     github: "https://github.com/DilanLoz/Task-Flow.git",
     image: "Projects/RocketFlow.png",
     tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT],
   },
 ];
+
+// 🔹 AQUÍ SE APLICA EL LIMIT
+const visibleProjects = limit
+  ? PROJECTS.slice(0, limit)
+  : PROJECTS;
 ---
 
 {
-  PROJECTS.map(({ tiltle, description, link, github, image, tags }) => (
+  visibleProjects.map(({ title, description, link, github, image, tags }) => (
     <article class="flex flex-col lg:flex-row items-start gap-8 mb-16">
-      <!-- Imagen del proyecto -->
       <div class="relative w-full lg:w-[400px] h-[250px] overflow-hidden rounded shadow-2xl shadow-white/30">
         <img
-          class="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-[1.35]"
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.35]"
           src={image}
-          alt={`Captura de pantalla de ${tiltle}`}
+          alt={`Captura de ${title}`}
         />
 
-        <!-- Botones de acción -->
         <div class="absolute bottom-4 right-4 flex gap-x-2">
           {github ? (
             <a
               href={github}
-              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+              class="rounded-xl border border-white/10 flex items-center gap-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
               target="_blank"
-              rel="noopener noreferrer"
             >
               <GitHubIcon class="w-4 h-4" /> Código
             </a>
           ) : (
-            <span
-              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/30 text-gray-300 cursor-default"
-              title="Código privado"
-            >
+            <span class="rounded-xl border border-white/10 flex items-center gap-2 py-1 px-3 text-xs bg-black/30 text-gray-300">
               <LockIcon class="w-4 h-4" /> Código privado
             </span>
           )}
@@ -100,9 +105,8 @@ const PROJECTS = [
           {link && (
             <a
               href={link}
-              class="rounded-xl border border-white/10 flex justify-center items-center gap-x-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
+              class="rounded-xl border border-white/10 flex items-center gap-2 py-1 px-3 text-xs bg-black/40 text-white hover:bg-black/70 transition"
               target="_blank"
-              rel="noopener noreferrer"
             >
               <EyeIcon class="w-4 h-4" /> Observar
             </a>
@@ -110,17 +114,14 @@ const PROJECTS = [
         </div>
       </div>
 
-      <!-- Texto y tags -->
-      <div class="flex-1 flex flex-col items-start text-left gap-y-4">
-        <span class="text-2xl font-semibold text-sky-500">{tiltle}</span>
-        <p class="text-md text-pretty">{description}</p>
+      <div class="flex-1 flex flex-col gap-y-4">
+        <span class="text-2xl font-semibold text-sky-500">{title}</span>
+        <p class="text-md">{description}</p>
 
         <ul class="flex gap-3 flex-wrap">
           {tags.map((tag) => (
             <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
-              >
+              <span class={`flex gap-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
                 <tag.icon class="w-4 h-4" />
                 {tag.name}
               </span>
