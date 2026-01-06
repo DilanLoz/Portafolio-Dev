@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout
+  title="Proyectos | Dilan Lopez"
+  description="Todos mis proyectos de desarrollo web y software."
+>
+  <main class="px-4 pt-40 max-w-6xl mx-auto">
+    <a
+      href="/#proyectos"
+      class="inline-flex items-center gap-2
+    px-5 py-2
+    rounded-full
+    bg-white/10
+    text-white font-semibold
+    backdrop-blur-md
+    border border-white/20
+    hover:bg-white/20
+    hover:scale-105
+    transition-all duration-300
+    mb-8"
+    >
+      ←  Volver
+    </a>
+
+    <h1 class="text-4xl font-bold mb-10">Todos mis proyectos</h1>
+    <Projects />
+  </main>
+</Layout>

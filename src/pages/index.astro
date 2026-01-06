@@ -163,7 +163,26 @@ import LearningIcon from "../components/icons/Certificate.astro";
         <CodeIcon class="size-7" />
         Proyectos
       </h2>
-      <Projects />
+
+      <Projects limit={2} />
+
+      <div class="flex justify-center mt-6">
+        <a
+          href="/proyectos"
+          class="inline-flex items-center gap-2
+    px-5 py-2
+    rounded-full
+    bg-white/10
+    text-white font-semibold
+    backdrop-blur-md
+    border border-white/20
+    hover:bg-white/20
+    hover:scale-105
+    transition-all duration-300"
+        >
+          Ver todos los proyectos →
+        </a>
+      </div>
     </SectionContainer>
     <SectionContainer id="experiencia">
       <h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
@@ -225,23 +244,21 @@ import LearningIcon from "../components/icons/Certificate.astro";
     });
   </script>
   <style>
-  @keyframes gradient-x {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+    @keyframes gradient-x {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 4s ease infinite;
-}
-
-</style>
-
+    .animate-gradient-x {
+      background-size: 200% 200%;
+      animation: gradient-x 4s ease infinite;
+    }
+  </style>
 </Layout>
