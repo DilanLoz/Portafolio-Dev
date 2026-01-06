@@ -2,6 +2,7 @@
 import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -22,15 +23,16 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="px-">
-    <!-- Spinner global al cargar la página -->
+
+  <body>
+    <!-- ================= LOADER GLOBAL ================= -->
     <div
       id="global-loader"
       class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999] transition-opacity duration-500"
     >
       <div class="flex flex-col items-center gap-3">
         <svg
-          class="animate-spin h-12 w-12 text-green-400"
+          class="animate-spin h-12 w-12 text-neutral-200"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -41,62 +43,70 @@ const { title, description } = Astro.props;
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"></circle>
+            stroke-width="4"
+          />
           <path
             class="opacity-75"
             fill="currentColor"
-            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          />
         </svg>
 
-        <p class="text-green-500 text-lg">Cargando...</p>
+        <p class="text-neutral-400 text-lg">Cargando...</p>
       </div>
     </div>
 
+    <!-- ================= FONDO SKY ================= -->
     <div
       class="fixed inset-0 -z-10 w-full h-full
-  [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#166534_100%)]"
-    >
-    </div>
+      [background:radial-gradient(140%_140%_at_50%_10%,#000_35%,#0ea5e9_100%)]"
+    ></div>
 
+    <!-- ================= CONTENIDO ================= -->
     <Header />
-    <slot />
+    <main class="flex-1">
+      <slot />
+    </main>
     <Footer />
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("global-loader");
+
+        setTimeout(() => {
+          loader.style.opacity = "0";
+
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 500);
+        }, 400);
+      });
+    </script>
   </body>
 </html>
+
 <style>
   :root {
-    color-scheme: light dark;
+    color-scheme: dark;
   }
+
   html {
     font-family: "Onest Variable", sans-serif;
     scroll-behavior: smooth;
-    text: white;
   }
+
   body {
     background-color: black;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: white;
   }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
   }
 </style>
-<script>
-  // Espera hasta que TODOS los recursos carguen (imágenes, fuentes, etc.)
-  window.addEventListener("load", () => {
-    const loader = document.getElementById("global-loader");
-
-    // Pequeña demora para que no desaparezca instantáneo
-    setTimeout(() => {
-      loader.style.opacity = "0";
-
-      // Lo removemos completamente después de la animación
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 500);
-    }, 400); // <- aquí decides qué tan suave se siente (400–800ms recomendado)
-  });
-</script>

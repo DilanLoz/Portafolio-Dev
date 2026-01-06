@@ -40,7 +40,7 @@ import LearningIcon from "../components/icons/Certificate.astro";
 
           <!-- Sección CV -->
           <div
-            class="rounded-full border border-white/10 flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base bg-white/5  mt-2"
+            class="rounded-full border border-white/10 flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base bg-white/5 mt-2"
           >
             <h2 class="text-xl font-semibold tracking-wide">HV</h2>
 
@@ -79,11 +79,11 @@ import LearningIcon from "../components/icons/Certificate.astro";
                 href="/DilanLopez.pdf"
                 download="DilanLopez.pdf"
                 title="Descargar HV"
-                class="w-8 h-8 flex items-center justify-center rounded-full bg-green-500/30 border border-green-400/40 hover:bg-green-500 transition-all duration-300 hover:text-black text-white"
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-sky-500/30 border border-neutral-400/40 hover:bg-sky-500 transition-all duration-300 text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-white hover:text-black"
+                  class="w-5 h-5 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -107,14 +107,28 @@ import LearningIcon from "../components/icons/Certificate.astro";
             id="inicio"
             class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
           >
-            Hey, soy Dilan Lopez
+            Soy Dilan Lopez
           </h1>
           <h2 class="text-xl lg:text-1xl pb-6 max-w-[700px] leading-relaxed">
             <span class="opacity-80">+2 año de experiencia. </span>
-            <span class="font-bold text-green-500">
+            <span
+              class="font-extrabold
+              bg-gradient-to-r
+              from-emerald-400
+              via-cyan-400
+              to-blue-500
+              bg-clip-text
+              text-transparent
+              drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]
+              animate-gradient-x
+              scale-110
+              transition-all
+              duration-500"
+            >
               Soy un desarrollador apasionado por crear software moderno,
               optimizado y escalable.
             </span>
+
             <span class="opacity-80">
               Me enfoco en el backend con Laravel, PHP y Node.js, y también
               disfruto el desarrollo frontend con React, Tailwind y TypeScript.
@@ -174,10 +188,22 @@ import LearningIcon from "../components/icons/Certificate.astro";
     </SectionContainer>
     <button
       id="btn-scroll-top"
-      class="fixed bottom-16 right-40 z-50 bg-green-500 text-black font-semibold p-3 rounded-md shadow-lg transition-all duration-300 hover:bg-green-400 hover:scale-110 hidden text-2xl"
+      class="fixed bottom-16 right-40 z-50 bg-sky-400 text-black font-semibold p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-sky-300 hover:scale-110 hidden text-2xl"
       title="Volver arriba"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up-icon lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-up-icon lucide-chevron-up"
+        ><path d="m18 15-6-6-6 6"></path></svg
+      >
     </button>
   </main>
   <script is:inline>
@@ -198,4 +224,24 @@ import LearningIcon from "../components/icons/Certificate.astro";
       });
     });
   </script>
+  <style>
+  @keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+
+</style>
+
 </Layout>

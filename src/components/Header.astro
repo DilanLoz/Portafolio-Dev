@@ -10,25 +10,65 @@
       <a
         id="proyectos-link"
         href="#proyectos"
-        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        class="nav-link
+  font-semibold
+  text-xs sm:text-sm md:text-base lg:text-lg
+  text-white
+  inline-block
+  px-3 py-1
+  rounded-full
+  transition-all
+  duration-500
+  relative
+  hover:outline"
         >Proyectos</a
       >
       <a
         id="experiencia-link"
         href="#experiencia"
-        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 rounded-full hover:rounded-full px-2 py-1"
+        class="nav-link
+  font-semibold
+  text-xs sm:text-sm md:text-base lg:text-lg
+  text-white
+  inline-block
+  px-3 py-1
+  rounded-full
+  transition-all
+  duration-500
+  relative
+  hover:outline"
         >Experiencia</a
       >
       <a
         id="tecnologias-link"
         href="#tecnologias"
-        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        class="nav-link
+  font-semibold
+  text-xs sm:text-sm md:text-base lg:text-lg
+  text-white
+  inline-block
+  px-3 py-1
+  rounded-full
+  transition-all
+  duration-500
+  relative
+  hover:outline"
         >Tecnologías</a
       >
       <a
         id="aprendizaje-link"
         href="#aprendizaje"
-        class="font-semibold text-sm sm:text-base md:text-lg text-white hover:bg-green-500/20 hover:text-green-500 hover:shadow-green-500 hover:backdrop-blur-md transition-colors duration-500 hover:rounded-full px-2 py-1"
+        class="nav-link
+  font-semibold
+  text-xs sm:text-sm md:text-base lg:text-lg
+  text-white
+  inline-block
+  px-3 py-1
+  rounded-full
+  transition-all
+  duration-500
+  relative
+  hover:outline"
         >Aprendizaje</a
       >
     </nav>
@@ -49,7 +89,7 @@
           "bg-black/30",
           "rounded-full",
           "shadow-lg",
-          "border-green-500"
+          "border-neutral-500"
         );
         navLinks.forEach((link) => {
           link.classList.add("text-white");
@@ -62,7 +102,7 @@
           "bg-black/30",
           "rounded-full",
           "shadow-lg",
-          "border-green-500"
+          "border-neutral-500"
         );
         navLinks.forEach((link) => {
           link.classList.remove("text-white");
@@ -74,8 +114,9 @@
     // Activar enlace según la sección visible
     const sections = document.querySelectorAll("section[id]");
     const observerOptions = {
-      rootMargin: "0px",
-      threshold: 0.5,
+      root: null,
+      rootMargin: "-120px 0px -60% 0px",
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -83,9 +124,35 @@
         const link = document.querySelector(`[href="#${entry.target.id}"]`);
         if (link) {
           if (entry.isIntersecting) {
-            link.classList.add("text-green-500", "font-extrabold", "bg-green-500/20", "shadow-green-500", "backdrop-blur-md", "transition-colors", "duration-500", "rounded-full");
+            link.classList.add(
+              "font-extrabold",
+              "bg-gradient-to-r",
+              "from-emerald-400",
+              "via-cyan-400",
+              "to-blue-500",
+              "bg-clip-text",
+              "text-transparent",
+              "drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]",
+              "animate-gradient-x",
+              "scale-110",
+              "transition-all",
+              "duration-500"
+            );
           } else {
-            link.classList.remove("text-green-500", "font-extrabold", "bg-green-500/20", "shadow-green-500", "backdrop-blur-md", "transition-colors", "duration-500", "rounded-full");
+            link.classList.remove(
+              "font-extrabold",
+              "bg-gradient-to-r",
+              "from-emerald-400",
+              "via-cyan-400",
+              "to-blue-500",
+              "bg-clip-text",
+              "text-transparent",
+              "drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]",
+              "animate-gradient-x",
+              "scale-110",
+              "transition-all",
+              "duration-500"
+            );
           }
         }
       });
@@ -94,3 +161,21 @@
     sections.forEach((section) => observer.observe(section));
   });
 </script>
+<style>
+  @keyframes gradient-x {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 4s ease infinite;
+  }
+</style>
