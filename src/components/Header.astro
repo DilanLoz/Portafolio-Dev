@@ -9,7 +9,7 @@
     <nav class="flex flex-row justify-between gap-x-2 md:gap-x-4">
       <a
         id="proyectos-link"
-        href="/#proyectos"
+        href="#proyectos"
         class="nav-link
   font-semibold
   text-xs sm:text-sm md:text-base lg:text-lg
@@ -25,7 +25,7 @@
       >
       <a
         id="experiencia-link"
-        href="/#experiencia"
+        href="#experiencia"
         class="nav-link
   font-semibold
   text-xs sm:text-sm md:text-base lg:text-lg
@@ -41,7 +41,7 @@
       >
       <a
         id="tecnologias-link"
-        href="/#tecnologias"
+        href="#tecnologias"
         class="nav-link
   font-semibold
   text-xs sm:text-sm md:text-base lg:text-lg
@@ -57,7 +57,7 @@
       >
       <a
         id="aprendizaje-link"
-        href="/#aprendizaje"
+        href="#aprendizaje"
         class="nav-link
   font-semibold
   text-xs sm:text-sm md:text-base lg:text-lg
@@ -79,46 +79,66 @@
   document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementById("main-header");
     const navLinks = document.querySelectorAll("#main-header a");
-    const sections = document.querySelectorAll("section[id]");
 
-    /* ===============================
-       HEADER SCROLL STYLE
-    =============================== */
+    // Cambiar estilos según el scroll
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
+        // Al bajar: fondo blanco con blur y texto negro
         header.classList.add(
           "backdrop-blur-lg",
           "bg-black/30",
           "rounded-full",
-          "shadow-lg"
+          "shadow-lg",
+          "border-neutral-500"
         );
+        navLinks.forEach((link) => {
+          link.classList.add("text-white");
+          link.classList.remove("text-white");
+        });
       } else {
+        // Arriba del todo: fondo transparente y texto blanco
         header.classList.remove(
           "backdrop-blur-lg",
           "bg-black/30",
           "rounded-full",
-          "shadow-lg"
+          "shadow-lg",
+          "border-neutral-500"
         );
+        navLinks.forEach((link) => {
+          link.classList.remove("text-white");
+          link.classList.add("text-white");
+        });
       }
     });
 
-    /* ===============================
-       SCROLLSPY REAL CON HASH
-    =============================== */
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+    // Activar enlace según la sección visible
+    const sections = document.querySelectorAll("section[id]");
+    const observerOptions = {
+      root: null,
+      rootMargin: "-120px 0px -60% 0px",
+      threshold: 0,
+    };
 
-          const id = entry.target.id;
-          const activeLink = document.querySelector(
-            `#main-header a[href="#${id}"]`
-          );
-
-          if (!activeLink) return;
-
-          // Limpiar todos
-          navLinks.forEach((link) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const link = document.querySelector(`[href="#${entry.target.id}"]`);
+        if (link) {
+          if (entry.isIntersecting) {
+            link.classList.add(
+              "font-extrabold",
+              "bg-gradient-to-r",
+              "from-emerald-400",
+              "via-cyan-400",
+              "to-blue-500",
+              "bg-clip-text",
+              "text-transparent",
+              "drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]",
+              "animate-gradient-x",
+              "scale-110",
+              "transition-all",
+              "duration-500"
+            );
+          } else {
             link.classList.remove(
               "font-extrabold",
               "bg-gradient-to-r",
@@ -129,39 +149,18 @@
               "text-transparent",
               "drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]",
               "animate-gradient-x",
-              "scale-110"
+              "scale-110",
+              "transition-all",
+              "duration-500"
             );
-          });
-
-          // Activar solo el actual
-          activeLink.classList.add(
-            "font-extrabold",
-            "bg-gradient-to-r",
-            "from-emerald-400",
-            "via-cyan-400",
-            "to-blue-500",
-            "bg-clip-text",
-            "text-transparent",
-            "drop-shadow-[0_0_12px_rgba(52,211,153,0.7)]",
-            "animate-gradient-x",
-            "scale-110"
-          );
-
-          // Mantener hash sincronizado
-          history.replaceState(null, "", `#${id}`);
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-120px 0px -60% 0px",
-        threshold: 0,
-      }
-    );
+          }
+        }
+      });
+    }, observerOptions);
 
     sections.forEach((section) => observer.observe(section));
   });
 </script>
-
 <style>
   @keyframes gradient-x {
     0% {
