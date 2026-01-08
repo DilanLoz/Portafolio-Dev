@@ -8,16 +8,17 @@ const languages = [
   {
     name: "Astro",
     icon: "https://cdn.simpleicons.org/astro/white",
-  } /*
-{
-  name: "Next.js",
-  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-}, */,
+  },
+  {
+    name: "Next.js",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  },
   {
     name: "Tailwind",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
   },
-  { name: "Bootstrap",
+  {
+    name: "Bootstrap",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
   },
   {
@@ -43,6 +44,11 @@ const languages = [
     name: "Node.js",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
+  {
+    name: "Python",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  // 🗄️ BASES DE DATOS
   /*
 {
   name: "Express",
@@ -51,37 +57,38 @@ const languages = [
 {
   name: "Firebase",
   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
-},
+},*/
   {
     name: "PostgreSQL",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-plain.svg",
-  },*/
-
-  // 🗄️ BASES DE DATOS
+  },
   {
     name: "MySQL",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  },
+  {
+    name: "SQLite",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg",
   },
 ];
 ---
 
 <div
-  class="
-    grid 
-    grid-cols-3  /* Móvil: 2 columnas */
-    sm:grid-cols-3  /* Tablet pequeña: 3 columnas */
-    md:grid-cols-4  /* Tablets grandes y PC: 4 columnas */
-    lg:grid-cols-6  /* Pantallas grandes: 6 columnas */
-    gap-4 
-    w-full 
-    py-4
-  "
+  class="grid
+    grid-cols-3 /* Móvil: 2 columnas */
+    sm:grid-cols-3 /* Tablet pequeña: 3 columnas */
+    md:grid-cols-4 /* Tablets grandes y PC: 4 columnas */
+    lg:grid-cols-6 /* Pantallas grandes: 6 columnas */
+    gap-4
+    w-full
+    py-4"
 >
-  {languages.map((lang) => (
-    <div
-      key={lang.name}
-      title={lang.name}
-      class="
+  {
+    languages.map((lang) => (
+      <div
+        key={lang.name}
+        title={lang.name}
+        class="
         flex flex-col items-center justify-center
         w-full
         p-4
@@ -94,20 +101,20 @@ const languages = [
         transition-transform duration-200
         hover:scale-110
       "
-    >
-      <img src={lang.icon} alt={lang.name} class="w-12 h-12 object-contain" />
-      <span
-        class="
+      >
+        <img src={lang.icon} alt={lang.name} class="w-12 h-12 object-contain" />
+        <span
+          class="
           mt-1 
           text-sm 
           font-medium 
           text-white 
           text-center
         "
-      >
-        {lang.name}
-      </span>
-    </div>
-  ))}
+        >
+          {lang.name}
+        </span>
+      </div>
+    ))
+  }
 </div>
-
